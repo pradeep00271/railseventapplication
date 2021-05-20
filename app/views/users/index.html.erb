@@ -1,0 +1,28 @@
+<h1>Users List</h1>
+<table class="table table-striped table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone No</th>
+      <th>Role</th>
+      <th>Created Event</th>
+      
+       </tr>
+  </thead>
+  <tbody>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_no %></td>
+        <td><%= user.role %></td>
+        <td><%= link_to 'Show', user,class:"btn btn-primary" %></td>
+    </tr>
+  </br>
+<% end %>
+</tbody>
+</table>
+
+<%= link_to 'New User', new_user_registration_path,class:"btn btn-secondary" %>

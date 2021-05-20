@@ -1,0 +1,17 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Name : <%= @user.name %></br>
+                 User Name : <%= @user.username %></br>
+				 Phone No : <%= @user.phone_no %></br>
+				 Role : <%= @user.role %></br>
+
+<% @user_events.each do |event| %>
+ Created Event Name :  <%= link_to event.event_name, event_path(event) %></h1>
+ <% end %>
+    
+</div></br>
+<%= link_to 'Back', users_path,class:"btn btn-primary" %>
+
+
+
+

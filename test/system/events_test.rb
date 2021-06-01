@@ -6,12 +6,12 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
-    visit events_url
+    visit __events_url
     assert_selector "h1", text: "Events"
   end
 
   test "creating a Event" do
-    visit events_url
+    visit __events_url
     click_on "New Event"
 
     fill_in "City", with: @event.city
@@ -26,7 +26,7 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "updating a Event" do
-    visit events_url
+    visit __events_url
     click_on "Edit", match: :first
 
     fill_in "City", with: @event.city
@@ -41,7 +41,7 @@ class EventsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Event" do
-    visit events_url
+    visit __events_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end

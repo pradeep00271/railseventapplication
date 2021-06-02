@@ -3,13 +3,13 @@
     <h1 class="display-4">Name : <%= @user.name %></br>
                  User Name : <%= @user.username %></br>
 				 Phone No : <%= @user.phone_no %></br>
-				 Role : <%= @user.role %></br>
+      Role : <%= @user.role %></h1></br>
 
 <% @user_events.each do |event| %>
- Created Event Name :  <%= link_to event.event_name, event_path(event) %></h1>
+      Created Event Name : <h1> <%= link_to event.event_name, event_path(event) %></h1>
  <% end %>
     
-</div></br>
+</div></div></br>
 <%= link_to 'Back', users_path,class:"btn btn-primary" %>
 
 

@@ -9,10 +9,10 @@ class Event < ApplicationRecord
 		where("LOWER(event_description) LIKE :event_description",event_description: "%#{event_description.downcase}%")
 	end
 	def self.startdate(start_date)
-		where("start_date LIKE :start_date",start_date: "%#{start_date}%")
+		where("cast(start_date as text) LIKE :start_date",start_date: "%#{start_date.downcase}%")
 	end
 	def self.enddate(end_date)
-		where("end_date LIKE :end_date",end_date: "%#{end_date}%")
+		where("cast(end_date as text) LIKE :end_date",end_date: "%#{end_date.downcase}%")
 	end
 	def self.city(city)
 		where("LOWER(city) LIKE :city",city: "%#{city.downcase}%")

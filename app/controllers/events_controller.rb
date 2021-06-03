@@ -8,11 +8,19 @@ class EventsController < ApplicationController
   def index
 
     @events=Event.all
+    @events=@events.eventname(params[:event_name]) if params[:event_name].present?
+    @events=@events.eventdescription(params[:event_description]) if params[:event_description].present?
+    @events=@events.startdate(params[:start_date]) if params[:start_date].present?
+    @events=@events.enddate(params[:end_date]) if params[:end_date].present?
+    @events=@events.city(params[:city]) if params[:city].present?
     if params[:search]
       @search_term = params[:search]
       @events = @events.search_by(@search_term)
 
+
+
     end
+
 
 
   end

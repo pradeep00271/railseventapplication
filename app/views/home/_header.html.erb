@@ -58,10 +58,11 @@
       </ul>
 
       <%=  form_tag events_path, :method => 'get' do %>
-      <%= text_field_tag :search, @search_term,placeholder: "Search" %>
+        <%= text_field_tag :search, @search_term,placeholder: "Search",class:"form-control" %></br>
           <%= submit_tag "Search" ,class:"btn btn-light"%>
+        <span style="padding-left:10px;"><%= link_to 'Reset', events_path,class:"btn btn-light" %></span>
       <% end %>
-      <span style="padding-left:10px;"><%= link_to 'Reset', events_path,class:"btn btn-light" %></span>
+
 
     </div>
   </div>

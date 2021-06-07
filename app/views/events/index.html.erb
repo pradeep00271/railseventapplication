@@ -1,9 +1,21 @@
 <h1>Events List</h1>
+<script>
+    $(function() {
+        var availableTags = [
+            "Created by Pradeep",
+            "Created by Prem",
+            "test"
+        ];
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
+    });
+</script>
 <div class="row">
   <div class="col">
 <%=  form_tag events_path, :method => 'get' do %>
   <%= label_tag :event_name %>
-      <%= text_field_tag :event_name,@event_name,class:"form-control",  placeholder: "Enter Event Name to search" %></div>
+      <%= text_field_tag :event_name,@event_name,class:"form-control",  placeholder: "Enter Event Name to search",id:"tags" %></div>
     <div class="col">
     <%= label_tag :event_description %>
       <%= text_field_tag :event_description,@event_description,class:"form-control", placeholder:"Enter Event Description to search" %></div>

@@ -44,6 +44,8 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
    @events = Event.find(params[:id])
+   @comment = Comment.new
+   @comments = @event.comments
   end
 
   # GET /events/new

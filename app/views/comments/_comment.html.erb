@@ -1,0 +1,10 @@
+ <% @comments.each do |c| %>
+   <p>
+     <%= c.comment %>
+   - Commented by <%= c.user.name %>
+     <% if user_signed_in? && (current_user == @event.user || current_user.admin?) %>
+     <%= link_to "Delete", event_comment_path(c.event_id,c.id), method: :delete  %>
+   </p>
+       <% end %>
+
+ <% end %>

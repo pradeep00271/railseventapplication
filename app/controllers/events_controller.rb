@@ -46,6 +46,7 @@ class EventsController < ApplicationController
    @events = Event.find(params[:id])
    @comment = Comment.new
    @comments = @event.comments
+
   end
 
   # GET /events/new

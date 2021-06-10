@@ -6,7 +6,7 @@
       Role : <%= @user.role %></h1></br>
 
 <% @user_events.each do |event| %>
-      Created Event Name : <h1> <%= link_to event.event_name, event_path(event) %></h1>
+      Created Event Name : <h1> <%= event.event_name %></h1>
  <% end %>
     
 </div></div></br>

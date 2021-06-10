@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!, except: [:index,:show]
 
+
   def create
     @event = Event.find(params[:event_id])
     @comment = @event.comments.create(comment_params)
@@ -10,6 +11,29 @@ class CommentsController < ApplicationController
       redirect_to @event
     end
   end
+
+  def edit
+    @event = Event.find(params[:event_id])
+    @comment = Comment.find(params[:id])
+
+
+
+
+  end
+
+  def update
+    @event = Event.find(params[:event_id])
+    @comment = Comment.find(params[:id])
+
+      if @comment.update(comment_params)
+        flash[:notice] = "Comment was successfully edited"
+        redirect_to @event
+      else
+        render 'edit'
+
+      end
+  end
+
 
 
   def destroy

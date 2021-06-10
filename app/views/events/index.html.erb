@@ -69,7 +69,7 @@
         <td><%= event.end_date %></td>
         <td><%= event.city %></td>
         <td><%= event.user.name if event.user %></td>
-        <% if user_signed_in?  %>
+
         <td><%= link_to 'Show', event,class:"btn btn-primary" %></td>
           <% end %>
         <% if user_signed_in? && (current_user == event.user || current_user.admin?) %>
@@ -79,7 +79,7 @@
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' },class:"btn btn-primary" %></td>
       </tr>
     <% end %>
-    <% end %>
+
   </tbody>
 </table>
 

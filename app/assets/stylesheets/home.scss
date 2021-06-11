@@ -1,3 +1,41 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+#logo {
+  float: left;
+  font-size: 1.7em;
+  color: #F7F7F7;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+}
+
+#jumbo {
+  text-align: center;
+  color: #F7F7F7;
+  font-weight: bold;
+  background-image: asset_url('event1.jpg');
+  background-size: cover;
+  height: 550px;
+}
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+footer a:hover {
+  color: #222;
+}
+footer small {
+  float: left;
+}
+footer ul {
+  float: right;
+  list-style: none;
+}
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}

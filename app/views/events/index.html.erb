@@ -16,10 +16,10 @@
 <div class="row">
   <div class="col">
 <%=  form_tag events_path, :method => 'get' do %>
-  <%= label_tag :event_name %>
+  <%= label_tag :event_name, "Name:" %>
       <%= text_field_tag :event_name,@event_name,class:"form-control",  placeholder: "Enter Event Name to search",id:"tags" %></div>
     <div class="col">
-    <%= label_tag :event_description %>
+    <%= label_tag :event_description, "Description:" %>
       <%= text_field_tag :event_description,@event_description,class:"form-control", placeholder:"Enter Event Description to search" %></div>
      <div class="col">
     <%= label_tag :start_date, "Select Start Date to search: " %>
@@ -29,7 +29,7 @@
     <%= label_tag :end_date, "Select End Date to search: " %>
       <%= date_field_tag :end_date,@end_date,class:"form-control" %></div>
     <div class="col">
-    <%= label_tag :city %>
+    <%= label_tag :city, "City:" %>
       <%= text_field_tag :city,@city,class:"form-control",placeholder:"Enter City to search" %></div>
     <div class="col">
       <span style="padding-bottom: 10px;"><%= submit_tag "Search",class:"btn btn-primary" %></span>

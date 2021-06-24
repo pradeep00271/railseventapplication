@@ -24,6 +24,16 @@
   <strong>City:</strong>
   <%= @event.city %>
 </p>
+  <% if @event.image.url %>
+  <p>
+    <strong>Image:</strong>
+    <% if @event.image %>
+    <div class="image_wrapper">
+      <%= image_tag(@event.image.url,alt: 'Image') if @event.image.url %>
+    </div>
+    <% end %>
+  </p>
+    <% end %>
 <hr>
   <%= render 'comments/form' %>
   <%= render 'comments/comment' %>

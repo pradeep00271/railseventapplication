@@ -20,11 +20,80 @@
           $( "#datepicker1" ).datepicker({dateFormat: 'yy-mm-dd'});
       } );
   </script>
+<script>
+    var placeSearch, autocomplete;
+    var componentForm = {
+        street_number: 'short_name',
+        locality: 'long_name',
+        administrative_area_level_1: 'short_name',
+        country: 'long_name',
+        postal_code: 'short_name'
+    };
+
+    function initAutocomplete() {
+        // Create the autocomplete object, restricting the search to geographical
+        // location types.
+        autocomplete = new google.maps.places.Autocomplete(
+            /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+            {types: ['geocode']});
+
+        // When the user selects an address from the dropdown, populate the address
+        // fields in the form.
+        autocomplete.addListener('place_changed', fillInAddress);
+    }
+
+    function fillInAddress() {
+        // Get the place details from the autocomplete object.
+        var place = autocomplete.getPlace();
+
+        for (var component in componentForm) {
+            document.getElementById(component).value = '';
+            document.getElementById(component).disabled = false;
+        }
+
+        // Get each component of the address from the place details
+        // and fill the corresponding field on the form.
+        for (var i = 0; i < place.address_components.length; i++) {
+            var addressType = place.address_components[i].types[0];
+            if (componentForm[addressType]) {
+                var val = place.address_components[i][componentForm[addressType]];
+                document.getElementById(addressType).value = val;
+
+            }
+            var near_place = autocomplete.getPlace();
+            document.getElementById('loc_lat').value = near_place.geometry.location.lat();
+            document.getElementById('loc_long').value = near_place.geometry.location.lng();
+        }
+    }
+
+    // Bias the autocomplete object to the user's geographical location,
+    // as supplied by the browser's 'navigator.geolocation' object.
+    function geolocate() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                autocomplete.setBounds(circle.getBounds());
+            });
+        }
+    }
+
+    $(document).on('change', '#'+autocomplete, function () {
+        document.getElementById('loc_lat').value = '';
+        document.getElementById('loc_long').value = '';
+    });
+</script>
 
   <div class="field form-group">
     <%= form.label :event_name %>
     <%= form.text_field :event_name,class:"form-control" %>
-  </div>
+  </div></br>
 
   <div class="field form-group">
     <%= form.label :event_description %>
@@ -42,11 +111,66 @@
   </div></br>
 
   <div class="field form-group">
-    <%= form.label :city %>
-    <%= form.text_field :city,class:"form-control" %>
+    <%= form.label :city , "Address" %>
+    <%= form.text_field :city1,class:"form-control" , id:"autocomplete", onFocus:"geolocate()", placeholder: "Enter Address to fill the form" %>
   </div></br>
+
+  <div class="field form-group">
+    <%= form.hidden_field :latitude,class:"form-control" , id:"loc_lat" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.hidden_field :longitude,class:"form-control", id:"loc_long" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "Street Address" %>
+    <%= form.text_field :street_address,class:"form-control" , id:"street_number" %>
+  </div></br>
+
+  <div class="field form-group">
+    <%= form.label "City" %>
+    <%= form.text_field :city,class:"form-control" , id:"locality" %>
+  </div></br>
+
+  <div class="field form-group">
+    <%= form.label "State" %>
+    <%= form.text_field :state,class:"form-control" , id:"administrative_area_level_1" %>
+  </div></br>
+
+  <div class="field form-group">
+    <%= form.label "Country" %>
+    <%= form.text_field :country,class:"form-control" , id:"country" %>
+  </div></br>
+
+  <div class="field form-group">
+    <%= form.label "Zip Code" %>
+    <%= form.text_field :zip_code,class:"form-control" , id:"postal_code" %>
+  </div></br>
+
+  <% if event.image? %>
+    <div class="image_wrapper">
+      <%= image_tag event.image.thumb.url %>
+    </div>
+    <% end %>
+
+  <div class="field form-group">
+    <%= form.label "Upload an Image to Event" %>
+    <%= form.file_field :image, class:"form-control"%>
+  </div>
+  <% if event.image? %>
+    <div class="form-check">
+      <label class="form-check-label">
+        <%= form.check_box :remove_image, class:"form-check-input" %> Remove Image
+      </label>
+    </div>
+      <% end %></br>
+
+
 
   <div class="actions">
     <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render 'errors', event: event %>

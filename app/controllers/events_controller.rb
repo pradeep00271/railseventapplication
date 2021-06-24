@@ -111,6 +111,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:event_name, :event_description, :start_date, :end_date, :city)
+      params.require(:event).permit(:event_name, :event_description, :start_date, :end_date, :city, :latitude, :longitude, :image, :remove_image, :image_cache, :street_address,:city1,:state,:country,:zip_code)
     end
 end

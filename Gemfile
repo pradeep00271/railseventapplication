@@ -18,6 +18,9 @@ gem 'sass-rails', '>= 6'
 gem 'jquery-rails', '~> 4.3.3'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'coffee-rails'
+gem 'carrierwave', '~> 2.0'
+gem 'file_validators'
+gem 'mini_magick'
 
 
 # Use Puma as the app server

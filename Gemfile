@@ -21,6 +21,7 @@ gem 'coffee-rails'
 gem 'carrierwave', '~> 2.0'
 gem 'file_validators'
 gem 'mini_magick'
+gem 'sidekiq'
 
 
 # Use Puma as the app server

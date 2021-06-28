@@ -24,6 +24,15 @@ class Event < ApplicationRecord
 	validates :image, file_size: {less_than: 5.megabytes}
 	validate :end_date_after_start_date?
 
+	scope :expired_events, -> { where('end_date < ?', Date.current) }
+	after_save_commit :delete_expired_events
+
+
+	def delete_expired_events
+		DeleteExpiredEventsJob.perform_later
+
+	end
+
 	def end_date_after_start_date?
 		if end_date < start_date
 			errors.add :end_date, "must be after start date"

@@ -22,6 +22,8 @@ gem 'carrierwave', '~> 2.0'
 gem 'file_validators'
 gem 'mini_magick'
 gem 'sidekiq'
+gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
 
 
 # Use Puma as the app server

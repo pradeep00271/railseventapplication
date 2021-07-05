@@ -43,9 +43,21 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-   @events = Event.find(params[:id])
-   @comment = Comment.new
-   @comments = @event.comments
+    @events = Event.find(params[:id])
+    @comment = Comment.new
+    @comments = @event.comments
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Event PDF",
+               template: "events/show.html.erb",
+               layout: 'pdf.html'
+
+      end
+    end
+
+
 
   end
 

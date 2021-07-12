@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
     @comment = @event.comments.create(comment_params)
 
     if @comment.save
+      UserMailer.signup_email(@event.id).deliver_later
       redirect_to @event
     end
   end

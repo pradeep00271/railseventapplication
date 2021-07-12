@@ -72,6 +72,26 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
    config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.active_job.queue_adapter = :sidekiq
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'ryancreations2000@gmail.com'}
+  config.action_mailer.asset_host = 'http://127.0.0.1:3000'
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'bitcot.com',
+    user_name:            'ryancreations2000@gmail.com',
+    password:             'nirmalapradeep',
+    authentication:       'plain',
+    enable_starttls_auto: true  }
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true

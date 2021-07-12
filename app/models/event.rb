@@ -18,7 +18,7 @@ class Event < ApplicationRecord
 		where("LOWER(city) LIKE :city",city: "%#{city.downcase}%")
 	end
 	belongs_to :user
-	has_many :comments
+	has_many :comments, dependent: :destroy
 	has_many :users, through: :comments
 	mount_uploader :image, ImageUploader
 	validates :image, file_size: {less_than: 5.megabytes}

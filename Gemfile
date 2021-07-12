@@ -24,6 +24,7 @@ gem 'mini_magick'
 gem 'sidekiq'
 gem 'wicked_pdf', '~> 1.1'
 gem 'wkhtmltopdf-binary'
+gem 'aws-sdk-ses'
 
 
 # Use Puma as the app server

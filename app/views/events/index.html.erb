@@ -1,18 +1,5 @@
 <h1>Events List</h1>
-<script>
-    $(function() {
-        var availableTags = [
-            "Created by Pradeep",
-            "Created by Prem",
-            "test",
-            "vennila"
-        ];
-        $( "#tags" ).autocomplete({
-            source: availableTags
-        });
-    });
-</script>
-
+<%= javascript_pack_tag "events", "data-turbolinks-track" => true %>
 <div class="row">
   <div class="col">
 <%=  form_tag events_path, :method => 'get' do %>

@@ -10,12 +10,12 @@ class EventsController < ApplicationController
     @events=Event.all
     if params[:event_name]
       @event_name = params[:event_name]
-      @events = @events.eventname(@event_name)
+      @events = @events.event_name(@event_name)
     end
 
     if params[:event_description]
       @event_description = params[:event_description]
-      @events = @events.eventdescription(@event_description)
+      @events = @events.event_description(@event_description)
     end
 
     if params[:city]
@@ -24,8 +24,8 @@ class EventsController < ApplicationController
     end
 
 
-    @events=@events.startdate(params[:start_date]) if params[:start_date].present?
-    @events=@events.enddate(params[:end_date]) if params[:end_date].present?
+    @events=@events.start_date(params[:start_date]) if params[:start_date].present?
+    @events=@events.end_date(params[:end_date]) if params[:end_date].present?
 
     if params[:search]
       @search_term = params[:search]
